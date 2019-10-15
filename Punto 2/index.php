@@ -13,7 +13,7 @@
     $client1 = new Client('1000', 'Gonzalo', 'Calle Falsa 1234', '1165879622');
     $client2 = new Client('1001', 'Ariel', 'Victoria 1531', '1161346140');
     $client3 = new Client('1002', 'Sergio', 'Saborido 2548', '1122215558');
-    
+
     /** Creo compañía */
     $company = new Company('01', 'Flybondy', 'Buenos Aires', '111111111');
 
@@ -25,5 +25,4 @@
     // muestro reporte
     $report = $company->getReportByDate('2019-10-13');
     echo $report;
-
 ?>

@@ -73,9 +73,6 @@
             $report .= "<strong>Total recaudado: " . $total . "</strong>";
 
             return $report;
-            /*echo "<pre>";
-            print_r($this->transports);
-            echo "</pre>";*/
         }
     }
 ?>
