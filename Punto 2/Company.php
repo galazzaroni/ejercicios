@@ -38,16 +38,18 @@
             $this->tel = $tel; 
         }   
 
-        public function transport(Client $client, $package, $from, $to, $price, $date)
+        public function transport(Client $client, Package $package, $from, $to, $price, $date)
         {
-            $transport = new stdClass();
-            $transport->client = $client;
-            $transport->package = $package; 
-            $transport->from = $from;
-            $transport->to = $to;
-            $transport->price = $price; 
-            $transport->date = $date;
+            $transport = (object)[
+                'client' => $client, 
+                'package' => $package,
+                'from' => $from, 
+                'to' => $to,
+                'price' => $price,
+                'date' => $date
+            ];
             array_push($this->transports, $transport);
+            return 'Package OK';
         }
 
         public function getReportByDate($date) {
@@ -59,7 +61,7 @@
             foreach($this->transports as $key){
                 if ($date == $key->date) {
                     $report .= "Cliente: " . $key->client->getCodClient() . " - " . $key->client->getName() . "<br />";
-                    $report .= "Paquete: " . $key->package . "<br />";
+                    $report .= "Paquete: " . $key->package->getType() . "<br />";
                     $report .= "Origen: " . $key->from . "<br />";
                     $report .= "Destino: " . $key->to . "<br />";
                     $report .= "Precio: " . $key->price . "<br /><br />";
@@ -71,6 +73,9 @@
             $report .= "<strong>Total recaudado: " . $total . "</strong>";
 
             return $report;
+            /*echo "<pre>";
+            print_r($this->transports);
+            echo "</pre>";*/
         }
     }
 ?>
